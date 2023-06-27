@@ -3,7 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/Registration")
 public class RegistrationController {
     private final RegistrationRepository registrationRepository;
 
@@ -22,7 +22,7 @@ public class RegistrationController {
     public void deleteRegistration(@PathVariable Long id) {
         registrationRepository.deleteById(id);
     }
-@GetMapping("/{id}")
+    @GetMapping("/{id}")
     public Registration get(@PathVariable Long id ){
         return registrationRepository.findById(id).orElse(null);
 }

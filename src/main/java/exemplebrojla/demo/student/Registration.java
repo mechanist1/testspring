@@ -1,13 +1,15 @@
 package exemplebrojla.demo.student;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 
-@EntityScan
+@Entity
 public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
