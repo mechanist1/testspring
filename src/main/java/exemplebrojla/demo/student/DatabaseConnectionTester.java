@@ -12,7 +12,7 @@ public class DatabaseConnectionTester {
 
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
-            System.out.println("Connection successful!");
+            System.out.println("Connection successful from port 8080 to port 3306!");
             connection.close();
         } catch (SQLException e) {
             System.out.println("Connection failed!");

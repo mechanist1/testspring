@@ -3,6 +3,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/Registration")
@@ -19,8 +22,9 @@ public class RegistrationController {
     @PostMapping
     public ResponseEntity<String> register(@RequestBody Registration r){
         registrationRepository.save(r);
-        System.out.println("This is the request body: " + r);
-        String res="its working";
+        System.out.println("requestbody recieved");
+        String res=r.getFirstname();
+        System.out.println("this is the firstname: "+res);
         return ResponseEntity.status(HttpStatus.OK).body(res);
 
 
@@ -29,9 +33,7 @@ public class RegistrationController {
     public void deleteRegistration(@PathVariable Long id) {
         registrationRepository.deleteById(id);
     }
-    @GetMapping("/{id}")
-    public Registration get(@PathVariable Long id ){
-        return registrationRepository.findById(id).orElse(null);
-}
+
+
 
 }

@@ -14,11 +14,12 @@ public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private String department;
     private String username;
     private String password;
+    private String passwordagain;
     private String email;
     private String contact;
 
@@ -30,20 +31,20 @@ public class Registration {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getDepartment() {
@@ -68,6 +69,14 @@ public class Registration {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordagain() {
+        return passwordagain;
+    }
+
+    public void setPasswordagain(String passwordagain) {
+        this.passwordagain = passwordagain;
     }
 
     public String getEmail() {
