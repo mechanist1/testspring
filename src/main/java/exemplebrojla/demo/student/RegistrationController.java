@@ -22,9 +22,15 @@ public class RegistrationController {
     @PostMapping
     public ResponseEntity<String> register(@RequestBody Registration r){
         registrationRepository.save(r);
-        System.out.println("requestbody recieved");
+        System.out.println("request body recieved");
         String res=r.getFirstname();
         System.out.println("this is the firstname: "+res);
+        List <Registration>list =registrationRepository.findAll();
+        for(Registration l: list){
+            System.out.println(l.getFirstname());
+
+        }
+        System.out.println(list);
         return ResponseEntity.status(HttpStatus.OK).body(res);
 
 

@@ -10,18 +10,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/Users")
 @CrossOrigin(origins = "http://localhost:4200")
-public class GetController {
+public class DeleteController {
 
     private final RegistrationRepository registrationRepository;
 
     @Autowired
-    public GetController(RegistrationRepository registrationRepository) {
+    public DeleteController(RegistrationRepository registrationRepository) {
         this.registrationRepository = registrationRepository;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<Registration>> getUsers() {
-        List<Registration> registrations = registrationRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(registrations);
+    @DeleteMapping("/{id}")
+    public void deleteUser (@PathVariable long id){
+        registrationRepository.deleteById(id);
     }
 }
