@@ -19,9 +19,11 @@ public class GetController {
         this.registrationRepository = registrationRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Registration>> getUsers() {
+
         List<Registration> registrations = registrationRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(registrations);
+
     }
 }

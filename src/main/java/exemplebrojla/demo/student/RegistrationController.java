@@ -35,10 +35,6 @@ public class RegistrationController {
 
 
     }
-    @DeleteMapping("/{id}")
-    public void deleteRegistration(@PathVariable Long id) {
-        registrationRepository.deleteById(id);
-    }
 
 
 

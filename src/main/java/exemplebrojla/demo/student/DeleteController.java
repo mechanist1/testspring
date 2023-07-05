@@ -21,6 +21,7 @@ public class DeleteController {
 
     @DeleteMapping("/{id}")
     public void deleteUser (@PathVariable long id){
+
         registrationRepository.deleteById(id);
     }
 }
