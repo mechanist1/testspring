@@ -21,9 +21,7 @@ public class AddController {
 
     @PostMapping
     public ResponseEntity<String> add(@RequestBody User res){
-        if(res.getPassword()!= res.getPasswordagain()){
-           return ResponseEntity.status(HttpStatus.OK).body("The passwords don't match");
-        }
+
         usersRepository.save(res);
         return ResponseEntity.status(HttpStatus.OK).body("User saved");
     }
