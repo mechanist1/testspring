@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import io.
+/* import io.jsonwebtoken.Jwts;
+   import io.jsonwebtoken.SignatureAlgorithm; */
 import java.util.Optional;
 
 @RestController
@@ -34,5 +36,15 @@ public class signinController {
         }
     }
 
+    /*
+    private String generateToken(long userId) {
+        String token = Jwts.builder()
+                .setSubject(Long.toString(userId))
+                .signWith(SignatureAlgorithm.HS256, "your-secret-key")
+                .compact();
+        return token;
+*/
+    }
 
-}
+
+
