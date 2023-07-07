@@ -1,50 +1,58 @@
 package exemplebrojla.demo.student;
-
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import io.
-/* import io.jsonwebtoken.Jwts;
-   import io.jsonwebtoken.SignatureAlgorithm; */
+
+import java.security.Key;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/signin")
 public class signinController {
+
     private UsersRepository usersRepository;
 
+    private Key secretKey;
 
     @Autowired
     public signinController(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
+        this.secretKey = generateSecretKey();
     }
+
     @PostMapping
     public ResponseEntity<String> signin(@RequestBody User user) {
-        System.out.println("api for signin works");
+        System.out.println("API for signin works");
         Optional<User> existingUser = usersRepository.findByEmail(user.getEmail());
 
         if (existingUser.isPresent() && existingUser.get().getpassword().equals(user.getpassword())) {
-
-            return ResponseEntity.ok("user exists welcome");
+            // User with the provided email and password exists
+            String token = generateToken(existingUser.get().getEmail());
+            return ResponseEntity.ok(token);
         } else {
-
-
-            return ResponseEntity.ok("doesn't exist");
+            // User doesn't exist or the password doesn't match
+            return ResponseEntity.ok("Invalid credentials");
         }
     }
 
-    /*
-    private String generateToken(long userId) {
-        String token = Jwts.builder()
-                .setSubject(Long.toString(userId))
-                .signWith(SignatureAlgorithm.HS256, "your-secret-key")
+    public static String generateToken(String subject) {
+        return Jwts.builder()
+                .setSubject(subject)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
-        return token;
-*/
     }
 
+    private Key generateSecretKey() {
+        return Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    }
 
-
+    private static Key getSigningKey() {
+        return Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    }
+}
